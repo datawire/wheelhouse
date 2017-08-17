@@ -1,0 +1,33 @@
+notifications:
+  email: false
+
+matrix:
+  include:
+    - sudo: required
+      services:
+        - docker
+      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
+    - sudo: required
+      services:
+        - docker
+      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
+           PRE_CMD=linux32
+
+install:
+  - docker pull $DOCKER_IMAGE
+
+script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run --rm -v `pwd`:/io $DOCKER_IMAGE $PRE_CMD /io/travis/build-wheels.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pip wheel -r requirements.txt -w wheelhouse/$TRAVIS_OS_NAME; fi
+  - ls wheelhouse/$TRAVIS_OS_NAME
+
+deploy:
+  provider: s3
+  bucket: datawire-static-files
+  skip_cleanup: true
+  local_dir: wheelhouse
+  upload-dir: wheelhouse
+  access_key_id:
+    secure: vDIF3MbmxX5HNHveFkbp74wIdPmBkZUOZvG/umiII7J6y02M4wng/A8ERO9iEUww4mbCwF5dlTP8a0WBpJVeakqMHjOI0QxjIrDYOHM4UsJ5iymQftRfbZL+QLlFok5jyyccsaz4KkwUiBLcapmklWNk/zExnMP/TiF/ASCfYtmNyA7AkOzpV9PBYj+nOM2T28ScDm54kRpE52CZBJZgltTjFSz4NhVWFJRO3w0P5VcE1l5G0PoeolHNlxDKSCNRN7PMXB7EePjFI5guq9Qem+PgwZrgLXRbeOqag4G324sXoKBNzcnuxQoeK4bKxHu8t5+Ff79QTcrHHTWeEd2qPoFnCGUgyvD3ZvD0O6DX0wJqEtjeO0rI3AaWA0reWacCjyxwQiCn5ttbYkybovBE1ApUw5Dn6wMi+F7Uot5ByUJV8UCUH4UdGuAszObcYrVRNuYpESfE0OQhSI5qsBa5LfNUkfh69aYVnQQWjpJ6n8AT85HG2zwEjmD9fe8KAmkkwyEYZe83dE2sJEdax/XM/cboqvy1ib9ZTAdBm0119q6St8yhG976/XQSRF619tP9ZMy9Z/wyzn7xCM+JCkhDrd6KSdXit+FepPZ5UgPtbsP+RRb/FBZM+mJTxsEndMqmbulrYGzmT7W/YAZEkhVt7JP1yns8p15gBgS1rEyLlNE=
+  secret_access_key:
+    secure: rzR/uJxErvK0AYw6GoCRjdqt5IZm8dKkrGX8VnsHzteO+0pPY1C7BhKU9FvQLvnnBsvcZIhVIdJSEFTMqtvylT0NK+E/uz0qqcmU64vSUVXhasDSxA1/dD9kP2zq7XxInhoTEsS8UKFlo+fb02DNmmL/+a7WkOUUpsfb4uIEmacTNtT1+a0NhujseF+1YVkBnteoFkBY7q6Fs9WklDqQ8Ny2oqdWHzkocIFGbnesW3kIEjI0VNLPww2tdJt6PAr/EpvzRgnYgfmL5kVOxgPm1UO8rRCO3ZrCVhKnDWzYeHVk17+Yz44IzzMEl8APzrgfn5tKsnxjgv5SdEQkklDpRDNzWrcd/BG0NeK21TKfSrg1F0VLVDCbTo3xyKddNlEeDbzy+nSeA1zAZbTe1aIjyAKwdAZmx3OBCgyJi1crxWB18JE6esNaGeyY6aMoHZmGLP5fGvb3oKno1B7nnzcAjOXD/yX5ynB3gKXBEZxm+AfNjP78qbkXDrnzLZXuORjKc1RNgCtNv4VM8/XU2cDleKTQZE/JAsb+n8gjt9ThRSTpq9z7YmShl0Pp+oonNbfv49wUv8Qp+jUu7r6b7ToM8nZYYWcLPUZdJZSynwWUMNrrF8rKWuAjHuzQVzrvwDxuux8t/r6SWEqgkbQ4ZY+UMAtDRjXArracGdZh33TCYys=
