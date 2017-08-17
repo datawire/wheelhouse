@@ -13,6 +13,6 @@ done
 
 # Bundle external shared libraries into the wheels
 for whl in $(ls wheelhouse/*.whl | fgrep -v none-any.whl); do
-    auditwheel repair "$whl" -w "$WHL_DIR"
+    auditwheel repair "$whl" -w wheelhouse
     rm "$whl"
 done
