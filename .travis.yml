@@ -18,7 +18,7 @@ matrix:
       language: generic
 
 install:
-  - docker pull $DOCKER_IMAGE
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker pull $DOCKER_IMAGE; fi
 
 script:
   - travis/build-wheels-${TRAVIS_OS_NAME}.sh
