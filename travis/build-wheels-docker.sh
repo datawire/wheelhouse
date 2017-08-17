@@ -8,7 +8,7 @@ cd /io
 
 # Compile wheels
 for PYBIN in $(ls -d /opt/python/*/bin | fgrep cp27); do
-    ./build-wheels.sh "${PYBIN}/pip"
+    travis/build-wheels.sh "${PYBIN}/pip"
 done
 
 # Bundle external shared libraries into the wheels
