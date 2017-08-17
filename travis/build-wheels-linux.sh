@@ -1,18 +1,4 @@
 #!/bin/bash
 set -e -x
 
-# Install any required system packages here:
-#yum install -y ...
-
-cd /io
-
-# Compile wheels
-for PYBIN in $(ls -d /opt/python/*/bin | fgrep cp27); do
-    ./build-wheels.sh "${PYBIN}/pip"
-done
-
-# Bundle external shared libraries into the wheels
-for whl in $(ls wheelhouse/*.whl | fgrep -v none-any.whl); do
-    auditwheel repair "$whl" -w "$WHL_DIR"
-    rm "$whl"
-done
+docker run --rm -v `pwd`:/io $DOCKER_IMAGE $PRE_CMD /io/travis/build-wheels-docker.sh
