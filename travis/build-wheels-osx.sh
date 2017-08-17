@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e -x
 
-
-WHL_DIR="wheelhouse/$TRAVIS_OS_NAME"
-
 # Compile wheels
-pip wheel -r requirements.txt -w "$WHL_DIR"
+./build-wheels.sh pip
+
+# We build the generic stuff on linux
+rm wheelhouse/*-none-any.whl

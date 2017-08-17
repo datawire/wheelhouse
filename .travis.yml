@@ -21,9 +21,8 @@ install:
   - docker pull $DOCKER_IMAGE
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run --rm -v `pwd`:/io $DOCKER_IMAGE $PRE_CMD /io/travis/build-wheels-linux.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis/build-wheels-osx.sh; fi
-  - ls wheelhouse/$TRAVIS_OS_NAME
+  - travis/build-wheels-${TRAVIS_OS_NAME}.sh
+  - ls wheelhouse
 
 deploy:
   provider: s3
