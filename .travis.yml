@@ -4,14 +4,18 @@ notifications:
 matrix:
   include:
     - sudo: required
+      language: generic
       services:
         - docker
       env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
     - sudo: required
+      language: generic
       services:
         - docker
       env: DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
            PRE_CMD=linux32
+#    - os: osx
+#      language: generic
 
 install:
   - docker pull $DOCKER_IMAGE

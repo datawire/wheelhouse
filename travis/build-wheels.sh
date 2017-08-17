@@ -4,7 +4,7 @@ set -e -x
 # Install a system package required by our library
 #yum install -y atlas-devel
 
-WHL_DIR = "/io/wheelhouse/$TRAVIS_OS_NAME"
+WHL_DIR="/io/wheelhouse/$TRAVIS_OS_NAME"
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
