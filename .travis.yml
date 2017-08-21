@@ -28,6 +28,7 @@ deploy:
   provider: s3
   bucket: datawire-static-files
   skip_cleanup: true
+  acl: public_read
   local_dir: wheelhouse
   upload-dir: wheelhouse
   access_key_id:
