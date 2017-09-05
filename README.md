@@ -101,6 +101,12 @@ linux and osx wheels necessary to create our standalone bundle. These
 just need to be published somewhere (in this case S3) that your
 project can access.
 
+This is what the wheelhouse project is. A simple project that uses
+travis to create a public archive with all the permutations of binary
+wheels necessary to build cross platform python executables that use
+any or all of the packages listed in
+[requirements.txt](requirements.txt).
+
 ## Using wheelhouse
 
 The shell script below illustrates how you would use the wheels built
