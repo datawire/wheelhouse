@@ -155,6 +155,7 @@ aws --no-sign-request s3 sync s3://datawire-static-files/wheelhouse $WHL_DIR
 
 cd "${WHL_DIR}"
 
+# Temporary workaround until pex supports manylinux.
 for whl in $(ls *-manylinux1_*.whl); do
   cp "${whl}" $(echo "${whl}" | sed s/manylinux1/linux/)
 done
