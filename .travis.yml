@@ -26,7 +26,7 @@ script:
 
 deploy:
   provider: s3
-  bucket: datawire-static-files
+  bucket: datawire-wheelhouse
   skip_cleanup: true
   acl: public_read
   local_dir: wheelhouse
