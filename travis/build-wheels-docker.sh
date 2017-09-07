@@ -7,8 +7,8 @@ set -e -x
 cd /io
 
 # Compile wheels
-for PYBIN in $(ls -d /opt/python/*/bin | fgrep cp27); do
-    travis/build-wheels.sh "${PYBIN}/pip"
+for PYBIN in $(ls -d /opt/python/*/bin | fgrep -v cp26); do
+    travis/build-wheels.sh "${PYBIN}/pip" "${PYBIN}/python"
 done
 
 # Bundle external shared libraries into the wheels
