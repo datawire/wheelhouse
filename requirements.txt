@@ -25,3 +25,4 @@ requests==2.14.2
 six==1.10.0
 wcwidth==0.1.7
 Werkzeug==0.12.2
+scout.py==0.1.5
