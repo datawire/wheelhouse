@@ -151,7 +151,7 @@ WHL_DIR=${DIR}/build/wheelhouse
 # This will sync all various wheels (linux 32 bit, linux 64 bit, osx,
 # etc) from S3 into a local directory so you can quickly build your
 # cross platform python executable locally.
-aws --no-sign-request s3 sync s3://datawire-static-files/wheelhouse $WHL_DIR
+aws --no-sign-request s3 sync s3://datawire-wheelhouse/wheelhouse $WHL_DIR
 
 cd "${WHL_DIR}"
 
