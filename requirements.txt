@@ -25,3 +25,4 @@ six==1.10.0
 wcwidth==0.1.7
 Werkzeug==0.12.2
 scout.py==0.1.5
+pathlib2==2.3.0
