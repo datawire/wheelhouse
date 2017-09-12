@@ -27,3 +27,4 @@ Werkzeug==0.12.2
 scout.py==0.1.5
 pathlib2==2.3.0
 scandir==1.5
+pathspec=0.5.5
