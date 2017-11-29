@@ -7,7 +7,7 @@ set -e -x
 cd /io
 
 # Compile wheels
-for PYBIN in $(ls -d /opt/python/*/bin | fgrep -v cp26); do
+for PYBIN in $(ls -d /opt/python/*/bin | fgrep -v cpython-2.6 ); do
     travis/build-wheels.sh "${PYBIN}/pip" "${PYBIN}/python"
 done
 
