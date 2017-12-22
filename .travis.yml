@@ -15,7 +15,10 @@ matrix:
       env: DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
            PRE_CMD=linux32
     - os: osx
-      language: generic
+      language: python
+      python:
+        - '3.5'
+        - '2.7'
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker pull $DOCKER_IMAGE; fi
