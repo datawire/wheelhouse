@@ -17,10 +17,7 @@ matrix:
     - os: osx
       language: generic
       before_install:
-       - brew update
-       - brew install python
-       - virtualenv env -p python
-       - source env/bin/activate
+      - brew install pyenv
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker pull $DOCKER_IMAGE; fi
