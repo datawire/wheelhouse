@@ -30,3 +30,4 @@ scandir==1.5
 pathspec==0.5.5
 boto3==1.5.5
 watchdog==0.8.3
+kubernetes==4.0.0
